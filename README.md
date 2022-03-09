@@ -1,70 +1,22 @@
-# Getting Started with Create React App
+Create a React app that mimics YouTube's homepage video grid list UI (highlighted in red in the screenshot below). Feel free to add other YouTube UI elements such as the header and the side drawer if you want to, but they're not required.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+Pay attention to the details of the UI elements, such as animations and tooltips or video popup when hovering the mouse over things. For this video popup specifically, YouTube has a video player, but you don't need to implement that - just display the video's thumbnail image instead.
 
-In the project directory, you can run:
+Note: Your only restriction here is to use React. Any frameworks for UI are allowed.
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Important technical details
+Do Not use any libraries frameworks besides what is provided by React to build the UI. (The preferred way will be to use <SomeComponent style={...}> approach or you can also use StyledComponents). You can still use whatever method you prefer for styling such as CSS, SCSS and so on but the method described above is the preferred solution.
+It isn't necessary to implement actions, e.g. clicking on a video or on the "watch later" button doesn't need to do anything.
+The list must be an infinite scrollable list.
+To get a paginated list of videos:
+Create a new project on Google or use an existing one
+Enable YouTube Data API v3
+Create an API Key (Create credentials -> Create API Key). Make sure not to commit this API Key, store it in a git ignored file such as a `.env` file. 
+Use the search: list API
+Make sure the `part` parameter is set to `snippet`, the `type` parameter is set to `video`, the `q` parameter is set to `programming` and the `key` parameter is set to the API key you generated in the previous step.
+Hint: You can also control the number of videos returned by each API call with the `maxResults` parameter.
+API call example: https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=50&q=programming&key={{API_KEY}}
+Skip any details not returned by the API, e.g. the number of views a video has or the channel's logo.
+Instead of saying how many days/months/years ago a video was published, you can just show a date like MM/DD/YYYY instead.
+If possible, do not use Redux store in your implementation (Look into React-Query) if you are looking for alternatives.
